@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Lipid Metabolism</title>
+<style>
+:root {
+--lipid-gold: #b58900;
+--ocean-blue: #0056b3;
+--slate: #2d3436;
+--soft-bg: #fdfcf0;
+}
+body {
+font-family: 'Segoe UI', Arial, sans-serif;
+line-height: 1.6;
+background-color: var(--soft-bg);
+color: var(--slate);
+margin: 0;
+padding: 20px;
+}
+.lesson-card {
+max-width: 850px;
+margin: 0 auto;
+background: #ffffff;
+border: 1px solid #e0e0e0;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+overflow: hidden;
+}
+header {
+background-color: var(--ocean-blue);
+color: white;
+padding: 30px 20px;
+text-align: center;
+}
+h1 { margin: 0; font-size: 1.8rem; }
+.subtitle { opacity: 0.9; font-size: 1rem; margin-top: 10px; }
+.content-section {
+padding: 30px;
+border-bottom: 1px dashed #ddd;
+}
+.phase-label {
+display: inline-block;
+background: var(--lipid-gold);
+color: white;
+padding: 4px 12px;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: bold;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
+h2 { color: var(--ocean-blue); margin-top: 0; }
+.key-term {
+font-weight: bold;
+color: #d35400;
+border-bottom: 1px dotted #d35400;
+}
+.process-box {
+background: #f1f7ff;
+border-left: 5px solid var(--ocean-blue);
+padding: 15px;
+margin: 15px 0;
+}
+.student-challenge {
+background: #fff3cd;
+border: 1px solid #ffeeba;
+padding: 15px;
+border-radius: 8px;
+margin-top: 20px;
+}
+.student-challenge strong {
+color: #856404;
+display: block;
+margin-bottom: 5px;
+}
+footer {
+text-align: center;
+padding: 20px;
+font-size: 0.85rem;
+color: #636e72;
+}
+</style>
+</head>
+<body>
+<div class="lesson-card">
+<header>
+<h1>Lipid Metabolism: The Body's Energy Reservoir</h1>
+<p class="subtitle">Unit 1: Digestion, Transport, and Beta-Oxidation</p>
+</header>
+<section class="content-section">
+<span class="phase-label">Phase 1: Digestion</span>
+<h2>Breaking the Drop</h2>
+<p>Lipids (fats) are hydrophobic, meaning they don't mix with water. To be metabolized, they must first be <span class="key-term">Emulsified</span> by bile salts in the small intestine. This turns large fat globules into tiny droplets, increasing the surface area for enzymes called lipases to work.</p>
+<div class="process-box">
+<strong>The Goal:</strong> Break complex Triacylglycerols (TAGs) down into free fatty acids and glycerol so they can pass through the intestinal wall.
+</div>
+<div class="student-challenge">
+<strong>Knowledge Check:</strong> Why can't the body just absorb a large fat globule directly into the bloodstream like it does with dissolved glucose?
+</div>
+</section>
+<section class="content-section">
+<span class="phase-label">Phase 2: Transport</span>
+<h2>The Chylomicron Shuttle</h2>
+<p>Once inside the intestinal cells, fats are rebuilt and packaged into "suitcases" called <span class="key-term">Chylomicrons</span>. These are a type of lipoprotein that allows hydrophobic fats to travel through the watery environment of the lymph system and eventually the blood.</p>
+<div class="process-box">
+<strong>Did you know?</strong> Unlike carbs and proteins, fats bypass the liver initially and enter the "drainage system" (lymphatic system) first.
+</div>
+<div class="student-challenge">
+<strong>Critical Thinking:</strong> If a patient has a "fatty liver," does that suggest a problem with fat <em>storage</em> or fat <em>transport</em>?
+</div>
+</section>
+<section class="content-section">
+<span class="phase-label">Phase 3: Catabolism</span>
+<h2>Beta-Oxidation: The "Slicing" Process</h2>
+<p>To get energy, the body moves fatty acids into the mitochondria using the <span class="key-term">Carnitine Shuttle</span>. Once inside, the process of <span class="key-term">Beta-Oxidation</span> begins. This pathway "slices" two carbons off the long fatty acid chain at a time.</p>
+<div class="process-box">
+<strong>The Yield:</strong> Each 2-carbon slice becomes <strong>Acetyl-CoA</strong>, which enters the Krebs Cycle to produce massive amounts of ATP (energy).
+</div>
+<div class="student-challenge">
+<strong>Math Connection:</strong> Glucose has 6 carbons. A typical fatty acid might have 16 carbons. Which molecule do you think provides more "bang for your buck" in terms of ATP production?
+</div>
+</section>
+<footer>
+<p>Developed for Biochemistry Students • Lipid Metabolism Module v1.0</p>
+</footer>
+</div>
+</body>
+</html>
