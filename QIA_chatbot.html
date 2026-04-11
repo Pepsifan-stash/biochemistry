@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cola — AI Chatbot Widget</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:Verdana,Geneva,Tahoma,sans-serif;}
+body{background:#0d1f3c;color:#e8eef8;min-height:100vh;display:flex;flex-direction:column;}
+a:focus,button:focus,textarea:focus{outline:3px solid #e8a020;outline-offset:2px;}
+.skip-link{position:absolute;top:-50px;left:0;background:#e8a020;color:#fff;padding:8px 16px;font-size:0.82rem;border-radius:0 0 6px 0;text-decoration:none;z-index:9999;transition:top .2s;}
+.skip-link:focus{top:0;}
+
+/* HEADER */
+.widget-header{
+  background:#0d1f3c;padding:1rem 1.25rem;
+  display:flex;align-items:center;gap:0.85rem;
+  box-shadow:0 2px 12px rgba(0,0,0,0.5);
+  flex-shrink:0;
+}
+.header-avatar{
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:2px solid rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;flex-shrink:0;
+}
+.header-name{font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;color:#ffffff;line-height:1.2;}
+.header-role{font-size:0.74rem;color:rgba(255,255,255,0.65);margin-top:3px;}
+
+/* MAIN */
+.widget-main{flex:1;max-width:720px;width:100%;margin:0 auto;padding:1.25rem 1rem 1.5rem;}
+
+/* GREETING CARD */
+.greeting-card{
+  background:#1a3464;
+  border:1px solid #1e3560;
+  border-left:4px solid #e8a020;
+  border-radius:10px;
+  padding:1.1rem 1.25rem;
+  margin-bottom:1.25rem;
+  display:flex;gap:0.85rem;align-items:flex-start;
+  box-shadow:0 1px 6px rgba(0,0,0,0.5);
+}
+.greeting-avatar{
+  font-size:1.6rem;flex-shrink:0;margin-top:2px;
+}
+.greeting-text{font-size:0.9rem;color:#e8eef8;line-height:1.6;}
+
+/* STARTER CHIPS */
+.starter-section{margin-bottom:1.25rem;}
+.starter-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#9aaac8;font-family:Verdana,sans-serif;margin-bottom:0.5rem;}
+.starter-chips{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.starter-chip{
+  background:rgba(232,160,32,0.12);color:#e8a020;
+  border:1px solid #e8a020;
+  border-radius:16px;padding:6px 14px;
+  font-size:0.78rem;font-family:Verdana,sans-serif;font-weight:600;
+  cursor:default;
+}
+
+/* DIVIDER */
+.section-divider{
+  border:none;border-top:1px solid #1e3560;
+  margin:0 0 1.25rem;
+}
+
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.25rem;}
+.step-row{display:flex;align-items:flex-start;gap:0.75rem;}
+.step-num{
+  width:26px;height:26px;border-radius:50%;
+  background:#e8a020;color:#fff;
+  font-size:0.75rem;font-weight:700;font-family:Verdana,sans-serif;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.step-text{font-size:0.82rem;color:#e8eef8;line-height:1.55;font-family:Verdana,sans-serif;}
+.step-text strong{color:#e8a020;}
+
+/* COPY BOX */
+.copy-section{
+  background:rgba(232,160,32,0.12);
+  border:2px solid #e8a020;
+  border-radius:10px;
+  padding:1rem 1.1rem 0.85rem;
+  margin-bottom:1.25rem;
+}
+.copy-section-title{
+  font-size:0.8rem;font-weight:700;font-family:Verdana,sans-serif;
+  color:#e8a020;margin-bottom:0.6rem;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.copy-ta{
+  width:100%;height:90px;
+  background:#162d54;
+  border:1px solid #1e3560;
+  border-radius:6px;
+  padding:0.6rem 0.8rem;
+  font-family:'Courier New',monospace;
+  font-size:0.72rem;color:#e8eef8;
+  resize:none;cursor:text;
+  margin-bottom:0.5rem;
+}
+.copy-ta:focus{outline:3px solid #e8a020;outline-offset:2px;}
+.copy-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#e8a020;color:#fff;border:none;
+  border-radius:7px;padding:9px 20px;
+  font-size:0.82rem;font-family:Verdana,sans-serif;font-weight:700;
+  cursor:pointer;transition:opacity .18s;width:100%;justify-content:center;
+}
+.copy-btn:hover{opacity:.88;}
+.copy-hint{font-size:0.7rem;font-family:Verdana,sans-serif;color:#9aaac8;margin-top:0.4rem;}
+
+/* PLATFORM GRID */
+.platform-section{margin-bottom:1rem;}
+.platform-label{
+  font-size:0.8rem;font-weight:700;font-family:Verdana,sans-serif;
+  color:#e8eef8;margin-bottom:0.5rem;
+}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.45rem;margin-bottom:0.55rem;}
+@media(max-width:480px){.platform-grid{grid-template-columns:1fr 1fr;}}
+.platform-btn{
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  padding:8px 6px;
+  background:#162d54;border:1px solid #1e3560;
+  border-radius:8px;font-size:0.74rem;font-family:Verdana,sans-serif;
+  color:#9aaac8;text-decoration:none;font-weight:600;
+  transition:all .18s;
+}
+.platform-btn:hover{border-color:#e8a020;color:#e8a020;}
+.free-note{
+  background:rgba(232,160,32,0.12);border:1px solid #e8a020;
+  border-radius:6px;padding:0.5rem 0.75rem;
+  font-size:0.75rem;font-family:Verdana,sans-serif;color:#e8a020;
+}
+
+/* FOOTER */
+.widget-footer{
+  background:#0a1628;border-top:1px solid #1e3560;
+  padding:0.6rem 1rem;text-align:center;
+  font-size:0.67rem;color:#4a6090;font-family:Verdana,sans-serif;
+}
+
+/* TOAST */
+#toast{
+  position:fixed;bottom:1.5rem;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:#e8a020;color:#fff;
+  padding:8px 20px;border-radius:20px;
+  font-size:0.8rem;font-family:Verdana,sans-serif;font-weight:600;
+  box-shadow:0 4px 16px rgba(0,0,0,0.5);
+  opacity:0;transition:opacity .25s,transform .25s;
+  pointer-events:none;z-index:9999;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+<a href="#copy-section" class="skip-link">Skip to copy prompt</a>
+<div aria-live="assertive" aria-atomic="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);" id="ariaLive"></div>
+
+<!-- HEADER -->
+<header class="widget-header" role="banner">
+  <div class="header-avatar" aria-hidden="true">🎓</div>
+  <div>
+    <div class="header-name">Cola</div>
+    <div class="header-role">course chatbot · NTID - Lab Science Technology</div>
+  </div>
+</header>
+
+<main class="widget-main" id="widget-main" role="main">
+
+  <!-- GREETING -->
+  <div class="greeting-card" role="region" aria-label="Bot greeting">
+    <div class="greeting-avatar" aria-hidden="true">🎓</div>
+    <div class="greeting-text">Hello! I am Cola, your chatbot to assist with studying instrumental analysis.</div>
+  </div>
+
+  
+
+  <hr class="section-divider" aria-hidden="true">
+
+  <!-- STEPS -->
+  <div class="steps" role="list" aria-label="How to use this chatbot">
+    <div class="step-row" role="listitem">
+      <div class="step-num" aria-hidden="true">1</div>
+      <div class="step-text"><strong>Copy the system prompt</strong> below — use the Copy button or select the text and press Ctrl+C (Windows) or Cmd+C (Mac).</div>
+    </div>
+    <div class="step-row" role="listitem">
+      <div class="step-num" aria-hidden="true">2</div>
+      <div class="step-text"><strong>Open a free AI platform</strong> using the buttons below. <strong>No paid account needed</strong> — a free account is all you need.</div>
+    </div>
+    <div class="step-row" role="listitem">
+      <div class="step-num" aria-hidden="true">3</div>
+      <div class="step-text"><strong>Start a new chat</strong> on that platform, paste the copied text as your very first message, and press Send. The AI will now respond as Cola.</div>
+    </div>
+    <div class="step-row" role="listitem">
+      <div class="step-num" aria-hidden="true">4</div>
+      <div class="step-text"><strong>Upload any course documents</strong> (optional) — Claude, ChatGPT, and Gemini all let you attach files directly in the chat. After pasting the prompt, use the paperclip or attachment button to upload a syllabus, readings, or other reference materials before asking your first question.</div>
+    </div>
+  </div>
+
+  <!-- COPY BOX -->
+  <div class="copy-section" id="copy-section" role="region" aria-label="System prompt copy area">
+    <div class="copy-section-title">📋 Step 1 — System Prompt (copy this)</div>
+    <textarea class="copy-ta" id="copyTa" readonly aria-label="System prompt — click to select, then copy" onclick="this.select()"></textarea>
+    <button class="copy-btn" onclick="copyPrompt()" aria-label="Copy system prompt to clipboard">📋 Copy System Prompt</button>
+    <div class="copy-hint">💡 If the button doesn't work in your browser: click inside the text box above, press Ctrl+A (or Cmd+A on Mac) to select all, then Ctrl+C (or Cmd+C) to copy.</div>
+  </div>
+
+  <!-- PLATFORM LINKS -->
+  <div class="platform-section" role="region" aria-label="AI platforms">
+    <div class="platform-label">Step 2 — Open a free AI platform:</div>
+    <div class="platform-grid">
+      <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="platform-btn" aria-label="Open Claude.ai in new tab">✦ Claude.ai ↗</a>
+            <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="platform-btn" aria-label="Open ChatGPT in new tab">⬡ ChatGPT ↗</a>
+            <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="platform-btn" aria-label="Open Gemini in new tab">◈ Gemini ↗</a>
+    </div>
+    <div class="free-note">✅ <strong>All three platforms offer free accounts.</strong> You do not need a paid subscription — simply sign up with an email address.</div>
+  </div>
+
+</main>
+
+<footer class="widget-footer" role="contentinfo">
+  NTID - Lab Science Technology
+</footer>
+
+<div id="toast" role="alert" aria-live="assertive"></div>
+
+<script>
+const SYSTEM_PROMPT = "# SYSTEM PROMPT: COLA\n\n## IDENTITY\nYou are Cola, a course chatbot at NTID - Lab Science Technology.\nYour primary users are: students.\n\n## PURPOSE\nHelp students study course materials\n\n## PERSONA & TONE\nYour communication style is: friendly.\n- Provide concrete examples to illustrate concepts.\n- Summarize key takeaways at the end of longer responses.\n- Check for user understanding before moving on.\n\n## OPENING GREETING\nWhen starting a new conversation, begin with: \"Hello! I am Cola, your chatbot to assist with studying instrumental analysis.\"\n\n## KNOWLEDGE SCOPE\nSubject domain: Instrumental analysis, analytical chemistry.\nYour knowledge is grounded in course material, curriculum documents, and academic content.\n\n### What you CAN help with:\nspectroscopy concepts; lab calibration methods using standards; lab skills such as weighing and pipetting; general instrument parts and concepts such as HPLC, gas chromatography, mass spectrometry, GC-MS, GC-FID, FTIR, atomic absorption spectroscopy, atomic emission spectroscopy, NMR....\n\n### What you should DECLINE or redirect:\nPolitely decline questions about: personal medical advice, materials outside of the course's scope\nWhen declining, briefly explain why and suggest where the user might find better help.\n\n## CONVERSATION STYLE\nResponse length: moderate. Adjust based on complexity of the question.\nLanguage level: intermediate level — assume basic familiarity with the subject.\n- End each response with a relevant follow-up question to keep the conversation moving.\n- Use numbered or bulleted lists when presenting multiple items or steps.\n\n## GUARDRAILS & SAFETY\n- Academic integrity: Do not complete assignments, write essays, solve exam problems, or produce work that substitutes for a student's own effort. You may explain, guide, and discuss — but not do the work for them.\n- Acknowledge uncertainty: When you are not confident in an answer, say so clearly. Do not fabricate information. Recommend consulting authoritative sources.\n- Hard refusals: never provide specific diagnoses, legal advice, or personal counseling. Never share other students' information.\n- If a user needs help beyond your scope, direct them to human support. Specifically: Your course instructor\n- Identity disclosure: If asked whether you are an AI, confirm that you are. Remind users that your responses may contain errors and should be verified for critical decisions.\n\n---\n# END OF SYSTEM PROMPT\n# Generated by Chatbot Builder — Demystifying AI · Brookdale Community College";
+
+function speak(msg){
+  const r=document.getElementById('ariaLive');
+  r.textContent='';setTimeout(()=>{r.textContent=msg;},50);
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function copyPrompt(){
+  // Always show the text selected — guaranteed to work everywhere
+  const ta=document.getElementById('copyTa');
+  if(ta){ta.focus();ta.select();}
+  // Also try Clipboard API as a bonus
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(SYSTEM_PROMPT)
+      .then(()=>{showToast('✅ Copied! Now open a platform below.');speak('System prompt copied.');})
+      .catch(()=>{showToast('Text selected — press Ctrl+C or Cmd+C to copy.');});
+  } else {
+    showToast('Text selected — press Ctrl+C or Cmd+C to copy.');
+  }
+}
+
+// Init — populate textarea
+document.getElementById('copyTa').value = SYSTEM_PROMPT;
+</script>
+</body>
+</html>
