@@ -6,59 +6,169 @@
 <title>Lehninger Biochemistry: Lipid Fundamentals</title>
 <style>
 :root {
---primary: #0056b3;
---secondary: #00838f;
---text-main: #212529;
---bg-light: #f8f9fa;
---accent-border: #dee2e6;
+--text-main: #2d3436;
+--primary: #0984e3;
+--secondary: #00cec9;
+--accent: #6c5ce7;
+--bg-light: #f9f9fb;
+--white: #ffffff;
 }
 body {
-font-family: Arial, sans-serif;
-line-height: 1.6;
+font-family: 'Segoe UI', Arial, sans-serif;
 background-color: var(--bg-light);
 color: var(--text-main);
+line-height: 1.7;
 margin: 0;
-padding: 20px;
+padding: 0;
 }
-.lesson-container {
-max-width: 850px;
-margin: 0 auto;
-background: #ffffff;
-padding: 40px;
-border-radius: 8px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-header {
+.navbar {
+background: var(--white);
+padding: 15px 0;
 text-align: center;
-border-bottom: 3px solid var(--primary);
-margin-bottom: 40px;
-padding-bottom: 20px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+position: sticky;
+top: 0;
+z-index: 100;
 }
-h1 { color: var(--primary); margin: 0; font-size: 2rem; }
-.edition-label { font-weight: bold; color: #666; font-size: 0.9rem; text-transform: uppercase; }
-h2 { color: var(--secondary); border-left: 5px solid var(--secondary); padding-left: 15px; margin-top: 40px; }
-.concept-block {
-background: #fff;
-border: 1px solid var(--accent-border);
-padding: 20px;
-border-radius: 6px;
-margin: 20px 0;
+.navbar a {
+color: var(--primary);
+text-decoration: none;
+font-weight: bold;
+margin: 0 15px;
+font-size: 0.9rem;
 }
-.lehninger-takeaway {
-background-color: #e7f3ff;
-border-left: 5px solid var(--primary);
-padding: 15px;
-font-style: italic;
-margin-top: 15px;
+.hero {
+background: linear-gradient(135deg, var(--primary), var(--accent));
+color: white;
+text-align: center;
+padding: 60px 20px;
 }
-.lehninger-takeaway strong { color: var(--primary); font-style: normal; }
+.hero h1 { margin: 0; font-size: 2.2rem; }
+.hero p { opacity: 0.9; font-size: 1.1rem; max-width: 700px; margin: 15px auto 0; }
+.container {
+max-width: 900px;
+margin: 40px auto;
+padding: 0 20px;
+}
+.section {
+background: var(--white);
+border-radius: 12px;
+padding: 30px;
+margin-bottom: 30px;
+box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+border-left: 6px solid var(--primary);
+}
+.section h2 {
+margin-top: 0;
+color: var(--primary);
+font-size: 1.5rem;
+}
 .formula {
-display: block;
-text-align: center;
-background: #f1f1f1;
+background: #f1f2f6;
 padding: 10px;
-font-family: monospace;
-margin: 15px 0;
-border-radius: 4px;
+border-radius: 6px;
+font-family: 'Courier New', monospace;
+display: inline-block;
+margin: 10px 0;
 }
-footer { text-align: center; margin-top: 50px; color: #888; font-size: 0.8rem
+.interactive-zone {
+background: #ebf5ff;
+padding: 20px;
+border-radius: 10px;
+border: 1px dashed var(--primary);
+margin-top: 20px;
+}
+.btn {
+background: var(--primary);
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+font-weight: bold;
+}
+.btn:hover { background: var(--accent); }
+#fact-box { margin-top: 15px; font-weight: bold; color: var(--accent); }
+footer {
+text-align: center;
+padding: 40px;
+color: #636e72;
+font-size: 0.8rem;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+<a href="#storage">Storage Lipids</a>
+<a href="#membrane">Membrane Lipids</a>
+<a href="#signaling">Signaling Lipids</a>
+</div>
+<header class="hero">
+<h1>Biological Lipids</h1>
+<p>An Advanced Introduction based on Lehninger Principles of Biochemistry (8th Ed)</p>
+</header>
+<div class="container">
+<section id="storage" class="section">
+<h2>1. Storage Lipids: Triacylglycerols</h2>
+<p>Storage lipids are derivatives of <strong>fatty acids</strong>—hydrocarbon derivatives with carboxylic acid head groups. In Lehninger, we focus on <strong>Triacylglycerols</strong> (fats). They consist of three fatty acids in ester linkage with a single glycerol.</p>
+<ul>
+<li><strong>Function:</strong> Energy storage and insulation.</li>
+<li><strong>Chemistry:</strong> They are nonpolar, hydrophobic, and chemically inert.</li>
+</ul>
+<div class="formula">Glycerol + 3 Fatty Acids &rarr; Triacylglycerol</div>
+</section>
+
+
+[Image of triacylglycerol structure]
+
+<section id="membrane" class="section">
+<h2>2. Membrane Structural Lipids</h2>
+<p>Unlike storage lipids, membrane lipids are <strong>amphipathic</strong>: one end is hydrophobic (tails), and the other is hydrophilic (polar head). Lehninger classifies these into three main types:</p>
+<ul>
+<li><strong>Glycerophospholipids:</strong> Hydrophobic regions composed of two fatty acids joined to glycerol.</li>
+<li><strong>Galactolipids:</strong> Predominant in plant cells (chloroplasts).</li>
+<li><strong>Sphingolipids:</strong> No glycerol; they use <strong>sphingosine</strong>, a long-chain amino alcohol.</li>
+</ul>
+</section>
+
+<section id="signaling" class="section">
+<h2>3. Signaling and Pigment Lipids</h2>
+<p>While some lipids store energy or build walls, others act as signals. These are present in much smaller amounts.</p>
+<ul>
+<li><strong>Sterols:</strong> Structural lipids present in the membranes of most eukaryotic cells (e.g., Cholesterol).</li>
+<li><strong>Eicosanoids:</strong> Paracrine hormones that act only on cells near their point of synthesis.</li>
+<li><strong>Vitamins:</strong> Lipids such as A, D, E, and K are essential for biological function but cannot be synthesized by vertebrates.</li>
+</ul>
+</section>
+
+
+[Image of cholesterol molecule structure]
+
+<section class="section">
+<h2>Interactive Professor's Desk</h2>
+<p>Select a concept below to see a key "Lehninger Takeaway."</p>
+<div class="interactive-zone">
+<button class="btn" onclick="showFact('fat')">Fat vs. Sugar</button>
+<button class="btn" onclick="showFact('double')">Saturation</button>
+<button class="btn" onclick="showFact('trans')">Trans Fats</button>
+<div id="fact-box">Click a button to start...</div>
+</div>
+</section>
+</div>
+<footer>
+Instructional Material for Undergraduate Biochemistry | Reference: Lehninger 8e, Chapter 10.
+</footer>
+<script>
+function showFact(type) {
+const box = document.getElementById('fact-box');
+if(type === 'fat') {
+box.innerHTML = "Takeaway: Fats provide 9 kcal/g compared to 4 kcal/g in sugars because carbon atoms in fatty acids are more reduced.";
+} else if(type === 'double') {
+box.innerHTML = "Takeaway: Double bonds in natural fatty acids are usually in the 'cis' configuration, creating a kink that lowers the melting point.";
+} else if(type === 'trans') {
+box.innerHTML = "Takeaway: Trans fatty acids are produced by partial hydrogenation of vegetable oils, increasing shelf life but also heart disease risk.";
+}
+}
+</script>
+</body>
+</html>
